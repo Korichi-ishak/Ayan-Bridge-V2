@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${hasScrolled ? 'bg-secondary/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
-      <nav className="flex justify-between items-center p-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <nav className="flex justify-between items-center p-4 px-4 sm:px-6 lg:px-8 mx-auto">
         <Link to="/" className="text-white font-bold text-2xl">
           Ayan<span className="text-primary">Bridge</span>
         </Link>

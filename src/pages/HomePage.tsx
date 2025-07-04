@@ -43,11 +43,11 @@ const HeroSection = () => {
 
 const FourPillarsSection = () => (
     <section className="py-16 md:py-24 bg-secondary px-4 sm:px-6 lg:px-8 relative z-10">
-      <div className="max-w-5xl mx-auto text-center">
+      <div className="mx-auto text-center">
         <motion.h2 initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.6}} viewport={{once: true}} className="text-3xl sm:text-4xl font-bold text-white mb-4">Les 4 Piliers de Votre Succès</motion.h2>
         <motion.p initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.6, delay: 0.1}} viewport={{once: true}} className="text-md sm:text-lg text-white/70 mb-12 md:mb-16">Une synergie unique pour démultiplier vos opportunités.</motion.p>
       </div>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" style={{ perspective: '1000px' }}>
+      <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" style={{ perspective: '1000px' }}>
         {[
           { icon: BrainCircuit, title: "Learn Hub", description: "Acquérez des compétences pointues grâce à nos formations d'experts." },
           { icon: MousePointer2, title: "Studio IA", description: "Créez des produits numériques de haute qualité en un temps record." },
@@ -175,7 +175,7 @@ const TestimonialsSection = () => {
       onMouseMove={handleMouseMove}
       className="spotlight-section py-16 md:py-20 bg-secondary relative z-10 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-white mb-12">Ce que notre communauté dit</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
