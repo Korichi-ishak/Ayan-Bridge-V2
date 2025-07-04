@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { getProducts, getTestimonials } from '../lib/api';
+import { getTestimonials } from '../lib/api';
 import type { Product, Testimonial } from '../types';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ChevronDown, BrainCircuit, MousePointer2, ShoppingBag, PiggyBank } from 'lucide-react';
@@ -68,6 +68,7 @@ const FourPillarsSection = () => (
     </section>
 );
 
+/*
 // Nouveau composant pour afficher les informations de chaque produit
 const ProductInfo = ({ product, onInView }: { product: Product, onInView: (url: string) => void }) => {
   const { ref, inView } = useInView({ threshold: 0.5 });
@@ -113,7 +114,7 @@ const ProductsSection = () => {
     return null;
   }
 
-  return (
+ return (
     <section className="bg-secondary relative z-10">
        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
          <div className="text-center py-20">
@@ -121,7 +122,6 @@ const ProductsSection = () => {
             <p className="text-lg text-white/70 mt-4">Chaque produit est une porte vers une nouvelle compétence.</p>
          </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Colonne de gauche (Image collante) */}
           <div className="md:sticky top-0 h-screen flex items-center justify-center">
             <div className="w-full max-w-md aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
               <AnimatePresence>
@@ -138,7 +138,6 @@ const ProductsSection = () => {
               </AnimatePresence>
             </div>
           </div>
-          {/* Colonne de droite (Texte qui défile) */}
           <div>
             {products.map((product) => (
               <ProductInfo key={product.id} product={product} onInView={setActiveImageUrl} />
@@ -149,6 +148,7 @@ const ProductsSection = () => {
     </section>
   );
 };
+*/
 
 const TestimonialsSection = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -196,7 +196,7 @@ const HomePage = () => {
     <div className="bg-background text-white">
       <HeroSection />
       <FourPillarsSection />
-      <ProductsSection />
+      {/* <ProductsSection /> */}
       <TestimonialsSection />
     </div>
   );
