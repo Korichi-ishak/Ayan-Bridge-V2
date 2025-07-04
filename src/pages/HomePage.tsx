@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { getTestimonials } from '../lib/api';
-import type { Product, Testimonial } from '../types';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import type { Testimonial } from '../types';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, BrainCircuit, MousePointer2, ShoppingBag, PiggyBank } from 'lucide-react';
 import CreativeTestimonialCard from '../components/testimonial/CreativeTestimonialCard';
 import PillarCard from '../components/ui/PillarCard';
-import { useInView } from 'react-intersection-observer';
-import { Button } from '../components/ui/Button';
 
 const videoUrl = "https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4";
 
@@ -28,10 +26,10 @@ const HeroSection = () => {
         </motion.div>
         
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5 }} className="relative z-10 px-4">
-          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tighter">
             Apprends. Crée. Investis. <span className="text-primary">Gagne.</span>
           </h1>
-          <p className="max-w-3xl mx-auto mt-6 text-lg md:text-xl text-white/80">
+          <p className="max-w-3xl mx-auto mt-6 text-base sm:text-lg md:text-xl text-white/80">
             La première plateforme tout-en-un qui connecte les créateurs de contenu, les apprenants et les investisseurs pour façonner le futur du savoir.
           </p>
         </motion.div>
@@ -44,10 +42,10 @@ const HeroSection = () => {
 };
 
 const FourPillarsSection = () => (
-    <section className="py-24 bg-secondary px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="py-16 md:py-24 bg-secondary px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-5xl mx-auto text-center">
-        <motion.h2 initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.6}} viewport={{once: true}} className="text-3xl font-bold text-white mb-4">Les 4 Piliers de Votre Succès</motion.h2>
-        <motion.p initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.6, delay: 0.1}} viewport={{once: true}} className="text-lg text-white/70 mb-16">Une synergie unique pour démultiplier vos opportunités.</motion.p>
+        <motion.h2 initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.6}} viewport={{once: true}} className="text-3xl sm:text-4xl font-bold text-white mb-4">Les 4 Piliers de Votre Succès</motion.h2>
+        <motion.p initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.6, delay: 0.1}} viewport={{once: true}} className="text-md sm:text-lg text-white/70 mb-12 md:mb-16">Une synergie unique pour démultiplier vos opportunités.</motion.p>
       </div>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" style={{ perspective: '1000px' }}>
         {[
@@ -175,15 +173,13 @@ const TestimonialsSection = () => {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="spotlight-section py-20 bg-secondary relative z-10 overflow-hidden"
+      className="spotlight-section py-16 md:py-20 bg-secondary relative z-10 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center text-white mb-12">Ce que notre communauté dit</h2>
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center text-white mb-12">Ce que notre communauté dit</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={testimonial.id} className="break-inside-avoid">
-              <CreativeTestimonialCard testimonial={testimonial} index={index} />
-            </div>
+            <CreativeTestimonialCard key={testimonial.id} testimonial={testimonial} index={index} />
           ))}
         </div>
       </div>
