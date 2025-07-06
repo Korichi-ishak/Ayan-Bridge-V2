@@ -1,12 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import { getTestimonials } from '../lib/api';
-import type { Testimonial } from '../types';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, BrainCircuit, MousePointer2, ShoppingBag, PiggyBank } from 'lucide-react';
-import CreativeTestimonialCard from '../components/testimonial/CreativeTestimonialCard';
-import PillarCard from '../components/ui/PillarCard';
+import { ChevronDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../components/ui/Button';
+import Testimonials from '../components/testimonial/Testimonials';
 
-const videoUrl = "https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4";
+const videoUrl = "https://videos.pexels.com/video-files/4499174/4499174-uhd_2560_1440_25fps.mp4";
 
 const HeroSection = () => {
     const heroRef = useRef<HTMLDivElement>(null);
@@ -19,13 +18,13 @@ const HeroSection = () => {
     const heroOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 1, 0]);
 
   return (
-      <motion.section ref={heroRef} style={{ opacity: heroOpacity }} className="h-screen sticky top-0 flex flex-col justify-center items-center text-center overflow-hidden">
-        <motion.div style={{ scale: videoScale }} className="absolute inset-0 z-0">
+      <motion.section ref={heroRef} style={{ opacity: heroOpacity }} className="w-full h-screen sticky top-0 flex flex-col justify-center items-center text-center overflow-hidden">
+        <motion.div style={{ scale: videoScale }} className="absolute inset-0 z-0 w-full h-full">
           <video className="w-full h-full object-cover" src={videoUrl} autoPlay loop muted playsInline/>
-          <div className="absolute inset-0 bg-black/60"/>
+          <div className="absolute inset-0 bg-black/60 w-full h-full"/>
         </motion.div>
         
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5 }} className="relative z-10 px-4">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5 }} className="relative z-10 px-4 w-full max-w-6xl mx-auto">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tighter">
             Apprends. Crée. Investis. <span className="text-primary">Gagne.</span>
           </h1>
@@ -41,30 +40,174 @@ const HeroSection = () => {
   );
 };
 
-const FourPillarsSection = () => (
-    <section className="py-16 md:py-24 bg-secondary px-4 sm:px-6 lg:px-8 relative z-10">
-      <div className="mx-auto text-center">
-        <motion.h2 initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.6}} viewport={{once: true}} className="text-3xl sm:text-4xl font-bold text-white mb-4">Les 4 Piliers de Votre Succès</motion.h2>
-        <motion.p initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.6, delay: 0.1}} viewport={{once: true}} className="text-md sm:text-lg text-white/70 mb-12 md:mb-16">Une synergie unique pour démultiplier vos opportunités.</motion.p>
+const AboutUsSection = () => {
+  const navigate = useNavigate();
+
+  const handleDiscoverVision = () => {
+    navigate('/learn');
+  };
+
+  const handleJoinCommunity = () => {
+    navigate('/signup');
+  };
+
+  return (
+    <section className="w-full py-16 md:py-24 bg-secondary px-4 sm:px-6 lg:px-8 relative z-10 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent w-full h-full"></div>
+      
+      <div className="w-full mx-auto relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          {/* Left side - Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+              <span className="text-primary font-medium text-sm">À propos d'AyanBridge</span>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              Révolutionner l'écosystème de la 
+              <span className="text-primary"> création numérique</span>
+            </h2>
+            
+            <p className="text-lg text-white/80 leading-relaxed">
+              AyanBridge est née d'une vision simple mais ambitieuse : créer un pont entre les créateurs, 
+              les apprenants et les investisseurs pour démocratiser l'accès au savoir et à l'innovation numérique.
+            </p>
+            
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 rounded-full bg-primary mt-3 flex-shrink-0"></div>
+                <p className="text-white/70">
+                  <span className="text-white font-semibold">Notre mission :</span> Connecter les talents 
+                  et démultiplier les opportunités dans l'économie créative.
+                </p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 rounded-full bg-primary mt-3 flex-shrink-0"></div>
+                <p className="text-white/70">
+                  <span className="text-white font-semibold">Notre vision :</span> Devenir la référence 
+                  mondiale pour l'apprentissage et la monétisation de contenus numériques.
+                </p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 rounded-full bg-primary mt-3 flex-shrink-0"></div>
+                <p className="text-white/70">
+                  <span className="text-white font-semibold">Nos valeurs :</span> Innovation, collaboration, 
+                  excellence et accessibilité pour tous.
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90"
+                onClick={handleDiscoverVision}
+              >
+                Découvrir notre vision
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="lg" 
+                className="text-white hover:bg-white/10"
+                onClick={handleJoinCommunity}
+              >
+                Rejoindre la communauté
+              </Button>
+            </div>
+          </motion.div>
+        
+        {/* Right side - Visual Gallery */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="relative"
+        >
+          <div className="grid grid-cols-2 gap-6">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative overflow-hidden rounded-2xl border border-white/10 group"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Créateurs collaborant"
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <div className="text-sm font-semibold">Créateurs actifs</div>
+                <div className="text-xs text-white/70">Communauté créative</div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative overflow-hidden rounded-2xl border border-white/10 group mt-8"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Formation en ligne"
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <div className="text-sm font-semibold">Formations créées</div>
+                <div className="text-xs text-white/70">Apprentissage continu</div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative overflow-hidden rounded-2xl border border-white/10 group -mt-4"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Investissement et croissance"
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <div className="text-sm font-semibold">Revenus générés</div>
+                <div className="text-xs text-white/70">Croissance économique</div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative overflow-hidden rounded-2xl border border-white/10 group mt-4"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Satisfaction client"
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <div className="text-sm font-semibold">Satisfaction clients</div>
+                <div className="text-xs text-white/70">Expérience exceptionnelle</div>
+              </div>
+            </motion.div>
+          </div>
+          
+          {/* Decorative elements */}
+          <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
+          <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+        </motion.div>
+        
       </div>
-      <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" style={{ perspective: '1000px' }}>
-        {[
-          { icon: BrainCircuit, title: "Learn Hub", description: "Acquérez des compétences pointues grâce à nos formations d'experts." },
-          { icon: MousePointer2, title: "Studio IA", description: "Créez des produits numériques de haute qualité en un temps record." },
-          { icon: ShoppingBag, title: "Magasin", description: "Monétisez vos créations sur un marché dynamique et mondial." },
-          { icon: PiggyBank, title: "Club Investisseur", description: "Investissez dans les créateurs et les projets d'avenir." }
-        ].map((pillar, index) => (
-          <PillarCard
-            key={pillar.title}
-            icon={pillar.icon}
-            title={pillar.title}
-            description={pillar.description}
-            index={index}
-          />
-        ))}
-      </div>
-    </section>
-);
+    </div>
+  </section>
+  );
+};
 
 /*
 // Nouveau composant pour afficher les informations de chaque produit
@@ -148,52 +291,13 @@ const ProductsSection = () => {
 };
 */
 
-const TestimonialsSection = () => {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      const allTestimonials = await getTestimonials();
-      setTestimonials(allTestimonials);
-    };
-    fetchTestimonials();
-  }, []);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    containerRef.current.style.setProperty("--mouse-x", `${x}px`);
-    containerRef.current.style.setProperty("--mouse-y", `${y}px`);
-  };
-
-  return (
-    <section 
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      className="spotlight-section py-16 md:py-20 bg-secondary relative z-10 overflow-hidden"
-    >
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-white mb-12">Ce que notre communauté dit</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <CreativeTestimonialCard key={testimonial.id} testimonial={testimonial} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const HomePage = () => {
   return (
-    <div className="bg-background text-white">
+    <div className="w-full bg-background text-white">
       <HeroSection />
-      <FourPillarsSection />
+      <AboutUsSection />
       {/* <ProductsSection /> */}
-      <TestimonialsSection />
+      <Testimonials />
     </div>
   );
 };

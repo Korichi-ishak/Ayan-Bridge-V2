@@ -24,10 +24,14 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${hasScrolled ? 'bg-secondary/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
-      <nav className="flex justify-between items-center p-4 px-4 sm:px-6 lg:px-8 mx-auto">
-        <Link to="/" className="text-white font-bold text-2xl">
-          Ayan<span className="text-primary">Bridge</span>
+    <header className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${hasScrolled ? 'bg-secondary/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
+      <nav className="w-full flex justify-between items-center p-4 px-4 sm:px-6 lg:px-8 mx-auto">
+        <Link to="/" className="flex items-center">
+          <img 
+            src="/logo.png" 
+            alt="AyanBridge Logo" 
+            className="h-14 w-auto"
+          />
         </Link>
         
         {/* Desktop Menu */}
@@ -39,8 +43,12 @@ const Header = () => {
           ))}
         </div>
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" className="text-white hover:bg-white/10">Connexion</Button>
-          <Button variant="primary">Inscription</Button>
+          <Link to="/login">
+            <Button variant="ghost" className="text-white hover:bg-white/10">Connexion</Button>
+          </Link>
+          <Link to="/signup">
+            <Button variant="primary">Inscription</Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -81,8 +89,12 @@ const Header = () => {
                   </Link>
                 ))}
                 <div className="border-t border-white/20 pt-6 flex flex-col space-y-4">
-                  <Button variant="ghost" className="text-white hover:bg-white/10">Connexion</Button>
-                  <Button variant="primary">Inscription</Button>
+                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                    <Button variant="ghost" className="text-white hover:bg-white/10 w-full">Connexion</Button>
+                  </Link>
+                  <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
+                    <Button variant="primary" className="w-full">Inscription</Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
